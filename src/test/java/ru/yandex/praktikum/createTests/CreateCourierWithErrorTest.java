@@ -30,4 +30,10 @@ public class CreateCourierWithErrorTest {
         String errorMessage = courierClient.createCatchError(courier, 400);
         assertEquals("Недостаточно данных для создания учетной записи", errorMessage);
     }
+
+    @Test
+    public void courierCantBeCreatedWithoutLoginPass() {
+        String errorMessage = courierClient.createWithoutLogPass();
+        assertEquals("Недостаточно данных для создания учетной записи", errorMessage);
+    }
 }

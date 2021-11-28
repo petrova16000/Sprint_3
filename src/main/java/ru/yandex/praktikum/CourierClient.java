@@ -24,6 +24,22 @@ public class CourierClient extends RestAssuredClient {
     }
 
     @Step("Создаем курьера")
+    public String createWithoutLogPass() {
+        return given()
+                .spec(getBaseSpec())
+                .body("{}")
+                .log().all()
+                .when()
+                .post(COURIER_PATH)
+                .then()
+                .log().all()
+                .assertThat()
+                .statusCode(400)
+                .extract()
+                .path("message");
+    }
+
+    @Step("Создаем курьера")
     public String createCatchError(Courier courier, int code) {
         return given()
                 .spec(getBaseSpec())
